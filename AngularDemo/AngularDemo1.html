@@ -7,107 +7,118 @@
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/AngDemo/app.js"></script>
     <script src="Scripts/AngDemo/controller.js"></script>
+    <script src="Scripts/AngDemo/filter.js"></script>
 </head>
 <body>
-    <div ng-app="demoApp">
-        <div ng-controller="demoController">
-            
-            <input type="checkbox" ng-model="hideStat" /> Show more Stats<br />
-            <table id="HRLeaders">
-                <tr>
-                    <th ng-click="sortData('name')">
-                        Name
-                        <div ng-class="getSortClass('name')"></div>
-                    </th>
-                    <th>Position</th>
-                    <th ng-click="sortData('games')">
-                        Games
-                        <div ng-class="getSortClass('games')"></div>
-                    </th>
-                    <th ng-click="sortData('atbat')">
-                        At Bat
-                        <div ng-class="getSortClass('atbat')"></div>
-                    </th>
-                    <th ng-click="sortData('runs')">
-                        R
-                        <div ng-class="getSortClass('runs')"></div>
-                    </th>
-                    <th ng-click="sortData('hits')">
-                        H
-                        <div ng-class="getSortClass('hits')"></div>
-                    </th>
-                    <th ng-click="sortData('doubles')">
-                        2B
-                        <div ng-class="getSortClass('doubles')"></div>
-                    </th>
-                    <th ng-click="sortData('triples')">
-                        3B
-                        <div ng-class="getSortClass('triples')"></div>
-                    </th>
-                    <th ng-click="sortData('hr')">
-                        HR
-                        <div ng-class="getSortClass('hr')"></div>
-                    </th>
-                    <th ng-click="sortData('rbi')">
-                        RBI
-                        <div ng-class="getSortClass('rbi')"></div>
-                    </th>
-                    <th ng-click="sortData('avg')" ng-hide="!hideStat">
-                        Avg
-                        <div ng-class="getSortClass('avg')"></div>
-                    </th>
-                    <th ng-click="sortData('slg')" ng-hide="!hideStat">
-                        Slg
-                        <div ng-class="getSortClass('slg')"></div>
-                    </th>
-                    <th  ng-click="sortData('totbases')" ng-hide="!hideStat">
-                        Total Bases
-                        <div ng-class="getSortClass('totbases')"></div>
-                    </th>
-                </tr>
-                <tr ng-repeat="player in hrKings | orderBy:sortColumn: reverseSort" ng-init="">
-                    <td>
-                        {{player.name}}
-                    </td>
-                    <td>
-                        {{player.position}}
-                    </td>
-                    <td>
-                        {{player.games}}
-                    </td>
-                    <td>
-                        {{player.atbat}}
-                    </td>
-                    <td>
-                        {{player.runs}}
-                    </td>
-                    <td>
-                        {{player.hits}}
-                    </td>
+    <div id="Container">
+        <div class="stuff">
+            The following is a basic demo to showcase my skills in AngularJS. This demo applies some of the basics to take an object list of baseball players and 
+            use angular's various features and functions to display them on an html page, calculate some statistical figures and sort by the data to compare the
+            stats. In addition, this also shows my development style in terms of coding and some small skills and HTML and CSS.
+        </div>
+        <h3>Major League Baseball's All Time Home Run leaders </h3>
+        
 
-                    <td>
-                        {{player.doubles}}
-                    </td>
-                    <td>
-                        {{player.triples}}
-                    </td>
-                    <td>
-                        {{player.hr}}
-                    </td>
-                    <td>
-                        {{player.rbi}}
-                    </td>
-                    <td ng-hide="!hideStat">
-                        {{player.avg = CalcAvg(player)| number:3 }}
-                    </td>
-                    <td ng-hide="!hideStat">
-                        {{player.slg = CalcSlg(player)| number: 3}}
-                    </td>
-                    <td ng-hide="!hideStat">
-                        {{player.totbases = CalcTotBases(player)}}
-                    </td>
-                </tr>
-            </table>
+        <div ng-app="demoApp">
+            <div ng-controller="demoController">
+
+                <input type="checkbox" ng-model="hideStat" /> Show more Stats<br />
+                <table id="HRLeaders">
+                    <tr>
+                        <th ng-click="sortData('name')">
+                            Name
+                            <div ng-class="getSortClass('name')"></div>
+                        </th>
+                        <th>Position</th>
+                        <th ng-click="sortData('games')">
+                            Games
+                            <div ng-class="getSortClass('games')"></div>
+                        </th>
+                        <th ng-click="sortData('atbat')">
+                            At Bat
+                            <div ng-class="getSortClass('atbat')"></div>
+                        </th>
+                        <th ng-click="sortData('runs')">
+                            R
+                            <div ng-class="getSortClass('runs')"></div>
+                        </th>
+                        <th ng-click="sortData('hits')">
+                            H
+                            <div ng-class="getSortClass('hits')"></div>
+                        </th>
+                        <th ng-click="sortData('doubles')">
+                            2B
+                            <div ng-class="getSortClass('doubles')"></div>
+                        </th>
+                        <th ng-click="sortData('triples')">
+                            3B
+                            <div ng-class="getSortClass('triples')"></div>
+                        </th>
+                        <th ng-click="sortData('hr')">
+                            HR
+                            <div ng-class="getSortClass('hr')"></div>
+                        </th>
+                        <th ng-click="sortData('rbi')">
+                            RBI
+                            <div ng-class="getSortClass('rbi')"></div>
+                        </th>
+                        <th ng-click="sortData('avg')" ng-hide="!hideStat">
+                            Avg
+                            <div ng-class="getSortClass('avg')"></div>
+                        </th>
+                        <th ng-click="sortData('slg')" ng-hide="!hideStat">
+                            Slg
+                            <div ng-class="getSortClass('slg')"></div>
+                        </th>
+                        <th ng-click="sortData('totbases')" ng-hide="!hideStat">
+                            Total Bases
+                            <div ng-class="getSortClass('totbases')"></div>
+                        </th>
+                    </tr>
+                    <tr ng-repeat="player in hrKings | orderBy:sortColumn: reverseSort" ng-init="">
+                        <td>
+                            {{player.name}}
+                        </td>
+                        <td>
+                            {{player.position | fieldposition}}
+                        </td>
+                        <td>
+                            {{player.games}}
+                        </td>
+                        <td>
+                            {{player.atbat}}
+                        </td>
+                        <td>
+                            {{player.runs}}
+                        </td>
+                        <td>
+                            {{player.hits}}
+                        </td>
+
+                        <td>
+                            {{player.doubles}}
+                        </td>
+                        <td>
+                            {{player.triples}}
+                        </td>
+                        <td>
+                            {{player.hr}}
+                        </td>
+                        <td>
+                            {{player.rbi}}
+                        </td>
+                        <td ng-hide="!hideStat">
+                            {{player.avg = CalcAvg(player)| number:3 }}
+                        </td>
+                        <td ng-hide="!hideStat">
+                            {{player.slg = CalcSlg(player)| number: 3}}
+                        </td>
+                        <td ng-hide="!hideStat">
+                            {{player.totbases = CalcTotBases(player)}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </body>

@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family:Arial;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -57,4 +58,15 @@ th {
     border-right: 5px solid transparent;
     border-top: 10px solid black;
     display: inline-block;
+}
+
+#Container {
+
+    margin:100px;
+
+
+}
+.stuff {
+
+    width:700px;
 }
